@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simpleArrow" class="by.pleshkov.Arrow" scope="prototype">
+        <constructor-arg name="damage" value="20"/>
+    </bean>
+
+    <bean id="bow" class="by.pleshkov.Bow">
+        <constructor-arg name="name" value="Bow"/>
+        <constructor-arg name="arrows">
+            <list>
+                <ref bean="simpleArrow"/>
+                <ref bean="simpleArrow"/>
+                <ref bean="simpleArrow"/>
+                <ref bean="simpleArrow"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dagger" class="by.pleshkov.Dagger" factory-method="steelDagger">
+        <constructor-arg name="name" value="Dagger"/>
+        <constructor-arg name="damage" value="50"/>
+    </bean>
+
+    <bean id="archer" class="by.pleshkov.Archer">
+        <constructor-arg name="name" value="Robin Hood"/>
+        <constructor-arg name="weapons">
+            <list>
+                <ref bean="bow"/>
+                <ref bean="dagger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
